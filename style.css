@@ -561,6 +561,26 @@ body::before {
     min-height: 44px;
     padding: 6px 12px;
   }
+
+  .panelCta {
+    bottom: 18px;
+    min-height: 22px;
+    max-width: 112px;
+    padding: 3px 16px 3px 22px;
+    font-size: 7px;
+    letter-spacing: 0.02em;
+  }
+
+  .panelCta::before {
+    left: 6px;
+    width: 9px;
+    height: 7px;
+  }
+
+  .panelCta::after {
+    right: 5px;
+    font-size: 6px;
+  }
 }
 
 @media (max-height: 520px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
@@ -586,6 +606,26 @@ body::before {
   .openBtn__text {
     font-size: 11px;
     letter-spacing: 0.06em;
+  }
+
+  .panelCta {
+    bottom: 14px;
+    min-height: 20px;
+    max-width: 96px;
+    padding: 2px 12px 2px 18px;
+    font-size: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .panelCta::before {
+    left: 5px;
+    width: 8px;
+    height: 6px;
+  }
+
+  .panelCta::after {
+    right: 4px;
+    font-size: 5px;
   }
 }
 
