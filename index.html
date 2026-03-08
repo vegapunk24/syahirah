@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Booklet</title>
-    <link rel="stylesheet" href="style.css" />
+    <script>
+      window.__assetVersion = Date.now().toString();
+      const styleEl = document.createElement("link");
+      styleEl.rel = "stylesheet";
+      styleEl.href = `style.css?v=${window.__assetVersion}`;
+      document.head.appendChild(styleEl);
+    </script>
   </head>
   <body>
     <audio id="bgAudio" loop preload="metadata" playsinline>
@@ -105,6 +111,10 @@
       </section>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+      const appScript = document.createElement("script");
+      appScript.src = `script.js?v=${window.__assetVersion || Date.now().toString()}`;
+      document.body.appendChild(appScript);
+    </script>
   </body>
 </html>
