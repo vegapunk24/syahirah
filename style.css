@@ -23,6 +23,7 @@ body {
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100svh;
   overflow-x: hidden;
   position: relative;
   isolation: isolate;
@@ -562,10 +563,36 @@ body::before {
   }
 }
 
+@media (max-height: 520px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  :root {
+    --control-space: 54px;
+  }
+
+  .stage {
+    gap: 8px;
+  }
+
+  .openBtn {
+    min-height: 38px;
+    padding: 5px 10px;
+    gap: 6px;
+  }
+
+  .openBtn__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .openBtn__text {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+}
+
 @media (hover: none) and (pointer: coarse) {
   body::before {
-    background-position: center top;
-    background-size: auto 100%;
+    background-position: center center;
+    background-size: cover;
   }
 }
 
