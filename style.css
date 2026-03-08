@@ -3,9 +3,9 @@
   --stage-padding: clamp(12px, 2.4vw, 32px);
   --control-space: clamp(76px, 10vh, 112px);
   --panel-ratio: 0.73;
-  --panel-vw-divisor: 3.3;
-  --open-scale: 1;
-  --max-panel-width: 390px;
+  --panel-vw-divisor: 2.6;
+  --open-scale: 0.94;
+  --max-panel-width: 520px;
   --panel-canvas: #e8e5e0;
   --panel-shadow: 0 12px 26px rgba(43, 28, 14, 0.2);
 }
@@ -275,10 +275,10 @@ body::before {
 }
 
 .openBtn {
-  min-height: clamp(52px, 7.8vw, 62px);
-  padding: clamp(8px, 1.5vw, 12px) clamp(14px, 2.8vw, 22px);
+  min-height: clamp(58px, 8.5vw, 72px);
+  padding: clamp(10px, 1.8vw, 14px) clamp(16px, 3.1vw, 26px);
   display: inline-flex;
-  gap: clamp(8px, 1.5vw, 12px);
+  gap: clamp(9px, 1.8vw, 14px);
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -304,8 +304,8 @@ body::before {
 }
 
 .openBtn__icon {
-  width: clamp(30px, 4.6vw, 36px);
-  height: clamp(30px, 4.6vw, 36px);
+  width: clamp(34px, 5vw, 42px);
+  height: clamp(34px, 5vw, 42px);
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -322,7 +322,7 @@ body::before {
 
 .openBtn__text {
   color: #552f16;
-  font-size: clamp(13px, 2.1vw, 15px);
+  font-size: clamp(14px, 2.3vw, 17px);
   font-weight: 700;
   font-family: "Nunito", "Segoe UI", Tahoma, sans-serif;
   letter-spacing: 0.1em;
@@ -360,14 +360,14 @@ body::before {
 
 .previewModal__card {
   position: relative;
-  width: min(92vw, 460px);
+  width: min(92vw, 560px);
   background:
     radial-gradient(circle at 14% 12%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 35%),
     linear-gradient(180deg, #fffdf7 0%, #f6eedf 100%);
   color: #2f1f12;
   border: 1px solid rgba(107, 76, 49, 0.24);
   border-radius: 8px;
-  padding: 34px 24px 24px;
+  padding: 38px 28px 28px;
   box-shadow: 0 20px 34px rgba(24, 15, 8, 0.26);
   transform: rotate(-0.7deg);
 }
@@ -439,7 +439,7 @@ body::before {
 
 .previewModal__title {
   margin: 0 0 10px;
-  font-size: clamp(18px, 3vw, 22px);
+  font-size: clamp(20px, 3vw, 25px);
   font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -448,7 +448,7 @@ body::before {
 
 .previewModal__text {
   margin: 0 0 14px;
-  font-size: clamp(14px, 2.3vw, 16px);
+  font-size: clamp(15px, 2.4vw, 17px);
   line-height: 1.8;
   font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
   color: #503622;
@@ -459,7 +459,7 @@ body::before {
 }
 
 .previewModal__content {
-  max-height: min(66vh, 500px);
+  max-height: min(70vh, 560px);
   overflow-y: auto;
   padding-right: 8px;
 }
@@ -488,27 +488,78 @@ body::before {
   }
 }
 
+@media (min-width: 1181px) {
+  .openBtn {
+    min-height: 66px;
+    padding: 12px 24px;
+    gap: 12px;
+  }
+
+  .openBtn__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .openBtn__text {
+    font-size: 16px;
+  }
+
+  .previewModal__card {
+    width: min(86vw, 640px);
+    padding: 44px 34px 34px;
+  }
+
+  .previewModal__title {
+    font-size: clamp(24px, 2.1vw, 30px);
+  }
+
+  .previewModal__text {
+    font-size: clamp(17px, 1.35vw, 20px);
+  }
+
+  .previewModal__content {
+    max-height: min(74vh, 680px);
+  }
+}
+
 @media (max-width: 1180px) {
   :root {
-    --panel-vw-divisor: 2.5;
-    --open-scale: 0.78;
-    --control-space: 74px;
+    --panel-vw-divisor: 2.35;
+    --open-scale: 0.82;
+    --control-space: 78px;
+  }
+
+  .previewModal__card {
+    width: min(92vw, 540px);
   }
 }
 
 @media (max-width: 920px) {
   :root {
-    --panel-vw-divisor: 2.05;
-    --open-scale: 0.66;
-    --control-space: 68px;
+    --panel-vw-divisor: 1.92;
+    --open-scale: 0.7;
+    --control-space: 70px;
+  }
+
+  .previewModal__card {
+    width: min(93vw, 500px);
+    padding: 36px 24px 24px;
+  }
+
+  .previewModal__title {
+    font-size: clamp(19px, 3.4vw, 23px);
+  }
+
+  .previewModal__text {
+    font-size: clamp(14px, 2.7vw, 16px);
   }
 }
 
 @media (max-width: 600px) {
   :root {
-    --panel-vw-divisor: 1.65;
-    --open-scale: 0.55;
-    --control-space: 60px;
+    --panel-vw-divisor: 1.54;
+    --open-scale: 0.6;
+    --control-space: 62px;
   }
 
   .stage {
@@ -517,16 +568,16 @@ body::before {
   }
 
   .openBtn {
-    min-height: 48px;
-    padding: 8px 14px;
+    min-height: 50px;
+    padding: 9px 15px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
   }
 
   .panelCta {
     bottom: 24px;
     min-height: 24px;
-    max-width: 120px;
-    padding: 4px 18px 4px 24px;
+    max-width: 126px;
+    padding: 4px 19px 4px 25px;
     font-size: 8px;
     letter-spacing: 0.03em;
   }
@@ -543,8 +594,27 @@ body::before {
   }
 
   .openBtn__text {
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.08em;
+  }
+
+  .previewModal__card {
+    width: min(94vw, 440px);
+    padding: 32px 20px 20px;
+  }
+
+  .previewModal__title {
+    font-size: clamp(18px, 4.6vw, 22px);
+  }
+
+  .previewModal__text {
+    font-size: clamp(14px, 3.5vw, 16px);
+    line-height: 1.72;
+  }
+
+  .previewModal__content {
+    max-height: min(68vh, 470px);
+    padding-right: 6px;
   }
 }
 
