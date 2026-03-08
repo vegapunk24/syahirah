@@ -1,9 +1,12 @@
-const booklet = document.querySelector(".booklet");
+const book = document.querySelector(".book");
+const foldedContent = document.querySelector(".fold--2");
 const toggleButton = document.querySelector(".openBtn");
 const bgAudio = document.getElementById("bgAudio");
 
 let hideButtonTimeoutId = null;
 let hasStartedAudio = false;
+let isOpen = false;
+let isAnimating = false;
 
 const animateButton = () => {
   toggleButton.classList.add("hide");
@@ -11,7 +14,7 @@ const animateButton = () => {
   window.clearTimeout(hideButtonTimeoutId);
   hideButtonTimeoutId = window.setTimeout(() => {
     toggleButton.classList.remove("hide");
-  }, 1200);
+  }, 1400);
 };
 
 const startAudio = async () => {
@@ -27,10 +30,31 @@ const startAudio = async () => {
   }
 };
 
-if (booklet && toggleButton) {
-  toggleButton.addEventListener("click", async () => {
+const setBookState = (openState) => {
+  isOpen = openState;
+  book.classList.toggle("is-open", isOpen);
+  book.dataset.state = isOpen ? "open" : "closed";
+  toggleButton.setAttribute("aria-pressed", String(isOpen));
+  if (foldedContent) {
+    foldedContent.setAttribute("aria-hidden", String(!isOpen));
+  }
+};
+
+if (book && toggleButton) {
+  setBookState(false);
+
+  toggleButton.addEventListener("click", () => {
+    if (isAnimating) {
+      return;
+    }
+
+    isAnimating = true;
     animateButton();
-    booklet.classList.toggle("open");
-    await startAudio();
+    setBookState(!isOpen);
+    void startAudio();
+
+    window.setTimeout(() => {
+      isAnimating = false;
+    }, 2300);
   });
 }

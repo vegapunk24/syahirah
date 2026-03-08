@@ -2,31 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Booklet</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <audio id="bgAudio" loop preload="metadata" playsinline>
-      <source src="song.mp3" type="audio/mpeg" />
+      <source src="mencintaimu.mp3" type="audio/mpeg" />
     </audio>
 
     <main class="stage">
-      <section class="booklet" aria-label="Interactive photo booklet">
-        <div class="page1"></div>
-        <div class="page2Container">
-          <div class="page2">
-            <div class="back"></div>
-            <div class="front"></div>
-          </div>
-          <div class="page3">
-            <div class="back"></div>
-            <div class="front"></div>
+      <section id="photoBook" class="book" aria-label="Interactive photo booklet" data-state="closed">
+        <article class="panel panel--1">
+          <img src="1.png" alt="Cover photo" />
+        </article>
+
+        <div class="fold fold--2" aria-hidden="true">
+          <article class="panel">
+            <img src="2.png" alt="Inside photo 1" />
+          </article>
+
+          <div class="fold fold--3">
+            <article class="panel">
+              <img src="4.png" alt="Inside photo 2" />
+            </article>
+
+            <div class="fold fold--4">
+              <article class="panel">
+                <img src="3.png" alt="Inside photo 3" />
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <button type="button" class="openBtn" aria-label="Open or close booklet and play music">
+      <button
+        type="button"
+        class="openBtn"
+        aria-label="Open or close booklet and play music"
+        aria-controls="photoBook"
+        aria-pressed="false"
+      >
         <img src="hand-icon.png" alt="Open booklet" />
       </button>
     </main>
