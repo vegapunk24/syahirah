@@ -71,6 +71,25 @@ body::before {
   transform: var(--open-transform);
 }
 
+.book.is-initializing,
+.book.is-initializing .fold--2,
+.book.is-initializing .fold--3,
+.book.is-initializing .fold--4,
+.book.is-initializing .panel--1 {
+  transition: none !important;
+}
+
+.book.is-initializing .fold {
+  transform: rotateY(-179deg) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.book.is-initializing .panel--1 {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
 .book::before {
   content: "";
   position: absolute;

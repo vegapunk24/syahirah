@@ -81,6 +81,11 @@ const setPreviewModalState = (openState) => {
 
 if (book && toggleButton) {
   setBookState(false);
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      book.classList.remove("is-initializing");
+    });
+  });
 
   toggleButton.addEventListener("click", () => {
     if (isAnimating) {
