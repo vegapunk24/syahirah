@@ -3,6 +3,9 @@ const foldedContent = document.querySelector(".fold--2");
 const toggleButton = document.querySelector(".openBtn");
 const toggleButtonText = document.querySelector(".openBtn__text");
 const bgAudio = document.getElementById("bgAudio");
+const previewModal = document.getElementById("previewModal");
+const previewOpenButton = document.querySelector("[data-open-preview]");
+const previewCloseButtons = document.querySelectorAll("[data-close-preview]");
 
 let hideButtonTimeoutId = null;
 let hasStartedAudio = false;
@@ -50,6 +53,16 @@ const setBookState = (openState) => {
   }
 };
 
+const setPreviewModalState = (openState) => {
+  if (!previewModal) {
+    return;
+  }
+
+  previewModal.classList.toggle("is-open", openState);
+  previewModal.setAttribute("aria-hidden", String(!openState));
+  document.body.style.overflow = openState ? "hidden" : "";
+};
+
 if (book && toggleButton) {
   setBookState(false);
 
@@ -69,3 +82,24 @@ if (book && toggleButton) {
     }, willOpen ? OPEN_ANIMATION_MS : CLOSE_ANIMATION_MS);
   });
 }
+
+if (previewOpenButton && previewModal) {
+  previewOpenButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setPreviewModalState(true);
+  });
+}
+
+if (previewCloseButtons.length > 0) {
+  previewCloseButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setPreviewModalState(false);
+    });
+  });
+}
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && previewModal?.classList.contains("is-open")) {
+    setPreviewModalState(false);
+  }
+});

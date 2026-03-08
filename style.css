@@ -113,6 +113,46 @@ body::before {
   object-fit: contain;
 }
 
+.panel--cta {
+  position: relative;
+}
+
+.panelCta {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(8px, 3.2%, 14px);
+  transform: translateX(-50%);
+  min-height: clamp(30px, 7%, 36px);
+  padding: 6px 14px;
+  border: 1px solid rgba(74, 45, 24, 0.3);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #4c2f1b;
+  font-size: clamp(10px, 1.1vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 3;
+  box-shadow: 0 4px 12px rgba(38, 24, 12, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.panelCta:hover {
+  transform: translateX(-50%) translateY(-1px);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 6px 14px rgba(38, 24, 12, 0.22);
+}
+
+.panelCta:active {
+  transform: translateX(-50%) translateY(0);
+}
+
+.panelCta:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
 .fold {
   left: 100%;
   transform-origin: left center;
@@ -240,6 +280,144 @@ body::before {
   pointer-events: none;
 }
 
+.previewModal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.previewModal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.previewModal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 14, 8, 0.42);
+  backdrop-filter: blur(3px);
+}
+
+.previewModal__card {
+  position: relative;
+  width: min(92vw, 460px);
+  background:
+    radial-gradient(circle at 14% 12%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 35%),
+    linear-gradient(180deg, #fffdf7 0%, #f6eedf 100%);
+  color: #2f1f12;
+  border: 1px solid rgba(107, 76, 49, 0.24);
+  border-radius: 8px;
+  padding: 34px 24px 24px;
+  box-shadow: 0 20px 34px rgba(24, 15, 8, 0.26);
+  transform: rotate(-0.7deg);
+}
+
+.previewModal__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 30px,
+    rgba(121, 88, 58, 0.12) 30px,
+    rgba(121, 88, 58, 0.12) 31px
+  );
+  opacity: 0.66;
+  pointer-events: none;
+}
+
+.previewModal__card::after {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 120px;
+  height: 26px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: rgba(205, 201, 188, 0.7);
+  border: 1px solid rgba(143, 137, 124, 0.35);
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(30, 20, 10, 0.12);
+  pointer-events: none;
+}
+
+.previewModal__card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.previewModal__close {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.7);
+  color: #5a3b25;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.previewModal__close:hover {
+  color: #2f1f12;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.previewModal__close:focus-visible {
+  outline: 2px solid #d6b089;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.previewModal__title {
+  margin: 0 0 10px;
+  font-size: clamp(18px, 3vw, 22px);
+  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #4b321d;
+}
+
+.previewModal__text {
+  margin: 0 0 14px;
+  font-size: clamp(14px, 2.3vw, 16px);
+  line-height: 1.8;
+  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+  color: #503622;
+}
+
+.previewModal__text:last-child {
+  margin-bottom: 0;
+}
+
+.previewModal__content {
+  max-height: min(66vh, 500px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.previewModal__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.previewModal__content::-webkit-scrollbar-thumb {
+  background: rgba(97, 69, 45, 0.35);
+  border-radius: 8px;
+}
+
 @supports (height: 100dvh) {
   body,
   .stage {
@@ -289,6 +467,14 @@ body::before {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
   }
 
+  .panelCta {
+    bottom: 7px;
+    min-height: 28px;
+    padding: 5px 11px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+
   .openBtn__text {
     font-size: 12px;
     letter-spacing: 0.08em;
@@ -322,6 +508,8 @@ body::before {
   .fold--2,
   .fold--3,
   .fold--4,
+  .panelCta,
+  .previewModal,
   .openBtn {
     transition-delay: 0s;
     transition-duration: 0.001ms;

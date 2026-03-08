@@ -23,8 +23,9 @@
           </article>
 
           <div class="fold fold--3">
-            <article class="panel">
+            <article class="panel panel--cta">
               <img src="4.png" alt="Inside photo 2" />
+              <button type="button" class="panelCta" data-open-preview>Click Here</button>
             </article>
 
             <div class="fold fold--4">
@@ -49,6 +50,60 @@
         <span class="openBtn__text">Flip</span>
       </button>
     </main>
+
+    <div id="previewModal" class="previewModal" aria-hidden="true">
+      <div class="previewModal__backdrop" data-close-preview></div>
+      <section
+        class="previewModal__card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="previewTitle"
+        aria-describedby="previewText"
+      >
+        <button type="button" class="previewModal__close" aria-label="Close preview" data-close-preview>
+          &times;
+        </button>
+        <h2 id="previewTitle" class="previewModal__title">Kepada Syahirah</h2>
+        <div id="previewText" class="previewModal__content">
+          <p class="previewModal__text">
+            Dalam perjalanan hidup ini, tidak semua orang yang kita temui mampu meninggalkan kesan yang mendalam.
+            Namun, hadirnya seorang insan bernama <strong>Syahirah</strong> adalah satu anugerah yang tidak pernah aku
+            sangka akan begitu bermakna.
+          </p>
+          <p class="previewModal__text">
+            Syahirah, namamu sendiri sudah membawa kelembutan yang sukar digambarkan dengan kata-kata. Dalam setiap
+            tutur kata dan setiap senyumanmu, ada ketenangan yang mampu meredakan gelora hati. Kau hadir bukan sekadar
+            sebagai seseorang yang menemani hari-hari, tetapi sebagai cahaya yang menerangi lorong kehidupan yang
+            kadangkala kelam.
+          </p>
+          <p class="previewModal__text">
+            Hubungan yang kita bina bukanlah sekadar pertemuan dua insan, tetapi pertemuan dua jiwa yang saling belajar
+            untuk memahami, menerima, dan menghargai. Dalam setiap detik yang kita lalui bersama, aku belajar bahawa
+            cinta yang sebenar bukan hanya tentang kebahagiaan semata-mata, tetapi tentang
+            <strong>kesediaan untuk tetap bersama ketika senyuman dan air mata hadir silih berganti</strong>.
+          </p>
+          <p class="previewModal__text">
+            Syahirah, terima kasih kerana menjadi seseorang yang begitu tulus. Terima kasih kerana mengajar erti sabar,
+            erti menghargai, dan erti kasih yang tidak pernah meminta balasan. Kehadiranmu membuatkan aku sedar bahawa
+            hubungan yang indah bukanlah hubungan yang sempurna, tetapi hubungan yang
+            <strong>dua hati di dalamnya tidak pernah berhenti berusaha untuk satu sama lain</strong>.
+          </p>
+          <p class="previewModal__text">
+            Jika suatu hari nanti perjalanan ini menjadi panjang dan penuh liku, aku berharap kita akan terus berjalan
+            seiring - saling memegang harapan, saling menguatkan langkah, dan saling mengingatkan bahawa kita pernah
+            memilih untuk menghargai satu sama lain.
+          </p>
+          <p class="previewModal__text">
+            Syahirah, dalam dunia yang luas ini, mungkin ramai manusia yang hebat. Tetapi bagiku, kehadiranmu sudah
+            cukup untuk menjadikan hidup ini terasa lebih bermakna.
+          </p>
+          <p class="previewModal__text">
+            Terima kasih kerana menjadi sebahagian daripada cerita hidupku - cerita yang aku harap akan terus kita tulis
+            bersama, dengan tinta kasih, hormat, dan penghargaan yang tidak pernah pudar.
+          </p>
+        </div>
+      </section>
+    </div>
 
     <script src="script.js"></script>
   </body>
