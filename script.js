@@ -1,39 +1,36 @@
-const setSizes = () => {
-  let bookletWidth = window.innerWidth < 1400 ? 0.9 * window.innerWidth : 1400;
+const booklet = document.querySelector(".booklet");
+const toggleButton = document.querySelector(".openBtn");
+const bgAudio = document.getElementById("bgAudio");
 
-  if (window.innerHeight < 450) {
-    bookletWidth = 0.75 * window.innerHeight * 2;
-  }
+let hideButtonTimeoutId = null;
+let hasStartedAudio = false;
 
-  // Adjust for mobile view
-  if (window.innerWidth < 768) {
-    bookletWidth = 0.9 * window.innerWidth;
-  }
+const animateButton = () => {
+  toggleButton.classList.add("hide");
 
-  document.body.style = `height: ${
-    window.innerHeight
-  }px; --booklet-width: ${bookletWidth}px; --page-width: ${
-    bookletWidth / 3
-  }px; --booklet-height: ${bookletWidth / 2.2}px`;
+  window.clearTimeout(hideButtonTimeoutId);
+  hideButtonTimeoutId = window.setTimeout(() => {
+    toggleButton.classList.remove("hide");
+  }, 1200);
 };
 
-setSizes();
-
-window.addEventListener("resize", () => {
-  setSizes();
-});
-
-const booklet = document.querySelector(".booklet");
-const button = document.querySelector(".openBtn");
-
-button.addEventListener("click", () => {
-  button.classList.add("hide");
-  setTimeout(() => {
-    button.classList.remove("hide");
-  }, 2000);
-  if (booklet.classList.contains("open")) {
-    booklet.classList.remove("open");
-  } else {
-    booklet.classList.add("open");
+const startAudio = async () => {
+  if (!bgAudio || hasStartedAudio) {
+    return;
   }
-});
+
+  try {
+    await bgAudio.play();
+    hasStartedAudio = true;
+  } catch (error) {
+    console.warn("Audio playback failed:", error);
+  }
+};
+
+if (booklet && toggleButton) {
+  toggleButton.addEventListener("click", async () => {
+    animateButton();
+    booklet.classList.toggle("open");
+    await startAudio();
+  });
+}
