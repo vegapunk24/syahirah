@@ -58,9 +58,25 @@ const setPreviewModalState = (openState) => {
     return;
   }
 
-  previewModal.classList.toggle("is-open", openState);
-  previewModal.setAttribute("aria-hidden", String(!openState));
-  document.body.style.overflow = openState ? "hidden" : "";
+  if (openState) {
+    previewModal.hidden = false;
+    // Wait one frame so opacity transition runs from 0 to 1.
+    window.requestAnimationFrame(() => {
+      previewModal.classList.add("is-open");
+      previewModal.setAttribute("aria-hidden", "false");
+    });
+    document.body.style.overflow = "hidden";
+    return;
+  }
+
+  previewModal.classList.remove("is-open");
+  previewModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  window.setTimeout(() => {
+    if (!previewModal.classList.contains("is-open")) {
+      previewModal.hidden = true;
+    }
+  }, 230);
 };
 
 if (book && toggleButton) {
