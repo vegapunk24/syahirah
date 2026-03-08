@@ -56,10 +56,11 @@ body::before {
     calc((100vh - var(--control-space) - (var(--stage-padding) * 2)) * var(--panel-ratio)),
     var(--max-panel-width)
   );
+  --open-transform: translateX(calc((0.5 - (2.5 * var(--open-scale))) * var(--panel-width))) scale(var(--open-scale));
   position: relative;
   width: var(--panel-width);
   height: calc(var(--panel-width) / var(--panel-ratio));
-  overflow: hidden;
+  overflow: visible;
   perspective: 2200px;
   transform-origin: left center;
   transform-style: preserve-3d;
@@ -67,8 +68,7 @@ body::before {
 }
 
 .book.is-open {
-  transform: translateX(calc((0.5 - (2.5 * var(--open-scale))) * var(--panel-width))) scale(var(--open-scale));
-  overflow: visible;
+  transform: var(--open-transform);
 }
 
 .book::before {
@@ -165,7 +165,7 @@ body::before {
 }
 
 .book:not(.is-open) .panel--1 {
-  transition-delay: 1.2s;
+  transition-delay: 1.83s;
 }
 
 .book:not(.is-open) .fold--4 {
@@ -173,45 +173,66 @@ body::before {
 }
 
 .book:not(.is-open) .fold--3 {
-  transition-delay: 0.25s;
+  transition-delay: 0.36s;
 }
 
 .book:not(.is-open) .fold--2 {
-  transition-delay: 0.5s;
+  transition-delay: 0.73s;
 }
 
 .openBtn {
-  width: clamp(58px, 12vw, 74px);
-  height: clamp(58px, 12vw, 74px);
-  padding: clamp(10px, 2.2vw, 14px);
+  min-height: clamp(52px, 7.8vw, 62px);
+  padding: clamp(8px, 1.5vw, 12px) clamp(14px, 2.8vw, 22px);
   display: inline-flex;
+  gap: clamp(8px, 1.5vw, 12px);
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.92);
-  border: 2px dashed var(--accent);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 240, 228, 0.96));
+  border: 1.5px dashed var(--accent);
   border-radius: 999px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .openBtn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
 }
 
 .openBtn:active {
-  transform: translateY(0) scale(0.97);
+  transform: translateY(0) scale(0.985);
 }
 
 .openBtn:focus-visible {
-  outline: 3px solid #ffffff;
+  outline: 3px solid rgba(255, 255, 255, 0.95);
   outline-offset: 3px;
 }
 
-.openBtn img {
-  width: 100%;
-  height: 100%;
+.openBtn__icon {
+  width: clamp(30px, 4.6vw, 36px);
+  height: clamp(30px, 4.6vw, 36px);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(87, 8, 2, 0.25);
+}
+
+.openBtn__icon img {
+  width: 74%;
+  height: 74%;
   object-fit: contain;
+}
+
+.openBtn__text {
+  color: #552f16;
+  font-size: clamp(13px, 2.1vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
 }
 
 .openBtn.hide {
@@ -263,8 +284,14 @@ body::before {
   }
 
   .openBtn {
-    border-width: 1.5px;
+    min-height: 48px;
+    padding: 8px 14px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+  }
+
+  .openBtn__text {
+    font-size: 12px;
+    letter-spacing: 0.08em;
   }
 }
 
@@ -278,9 +305,8 @@ body::before {
   }
 
   .openBtn {
-    width: 54px;
-    height: 54px;
-    padding: 9px;
+    min-height: 44px;
+    padding: 6px 12px;
   }
 }
 
