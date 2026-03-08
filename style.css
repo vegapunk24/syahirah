@@ -369,7 +369,7 @@ body::before {
   border-radius: 8px;
   padding: 38px 28px 28px;
   box-shadow: 0 20px 34px rgba(24, 15, 8, 0.26);
-  transform: rotate(-0.7deg);
+  transform: none;
 }
 
 .previewModal__card::before {
@@ -442,6 +442,7 @@ body::before {
   font-size: clamp(20px, 3vw, 25px);
   font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
   font-weight: 700;
+  font-style: italic;
   letter-spacing: 0.04em;
   color: #4b321d;
 }
@@ -451,11 +452,21 @@ body::before {
   font-size: clamp(15px, 2.4vw, 17px);
   line-height: 1.8;
   font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+  font-style: italic;
   color: #503622;
 }
 
 .previewModal__text:last-child {
   margin-bottom: 0;
+}
+
+.heartSymbol {
+  font-style: normal;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-weight: 400;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: -0.04em;
 }
 
 .previewModal__content {
