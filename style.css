@@ -697,28 +697,29 @@ body::before {
 
   .panelCta {
     bottom: 50px;
-    min-height: 24px;
-    max-width: 126px;
-    padding: 4px 19px 4px 25px;
-    font-size: 8px;
-    letter-spacing: 0.03em;
+    min-height: 22px;
+    max-width: 112px;
+    padding: 3px 16px 3px 22px;
+    font-size: 7px;
+    letter-spacing: 0.02em;
   }
 
   .panelCta::before {
-    left: 7px;
-    width: 10px;
-    height: 8px;
+    left: 6px;
+    width: 9px;
+    height: 7px;
   }
 
   .panelCta::after {
-    right: 6px;
-    font-size: 7px;
+    right: 5px;
+    font-size: 6px;
   }
 
   .daysCounter {
     top: 20px;
     width: min(78%, 180px);
-    padding: 11px 14px 11px;
+    padding: 9px 13px 8px;
+    gap: 3px;
   }
 
   .daysCounter::before {
@@ -734,11 +735,11 @@ body::before {
 
   .daysCounter__value {
     gap: 4px;
-    font-size: clamp(22px, 6vw, 28px);
+    font-size: clamp(21px, 5.8vw, 26px);
   }
 
   .daysCounter__value::after {
-    padding-bottom: 4px;
+    padding-bottom: 3px;
     font-size: 10px;
     letter-spacing: 0.03em;
   }
@@ -773,6 +774,60 @@ body::before {
   }
 }
 
+@media (max-width: 420px) {
+  .panelCta {
+    bottom: 42px;
+    min-height: 20px;
+    max-width: 96px;
+    padding: 2px 13px 2px 18px;
+    font-size: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .panelCta::before {
+    left: 5px;
+    width: 8px;
+    height: 6px;
+  }
+
+  .panelCta::after {
+    right: 4px;
+    font-size: 5px;
+  }
+
+  .daysCounter {
+    top: 16px;
+    width: min(70%, 158px);
+    padding: 7px 10px 7px;
+    gap: 2px;
+  }
+
+  .daysCounter::before {
+    width: 52px;
+    height: 14px;
+    top: -7px;
+  }
+
+  .daysCounter__label {
+    font-size: 8px;
+  }
+
+  .daysCounter__value {
+    gap: 2px;
+    font-size: 21px;
+  }
+
+  .daysCounter__value::after {
+    padding-bottom: 2px;
+    font-size: 8px;
+  }
+
+  .daysCounter__date {
+    font-size: 7px;
+    letter-spacing: 0.01em;
+  }
+}
+
 @media (max-height: 600px) and (orientation: landscape) {
   :root {
     --control-space: 68px;
@@ -789,48 +844,49 @@ body::before {
 
   .panelCta {
     bottom: 40px;
-    min-height: 22px;
-    max-width: 112px;
-    padding: 3px 16px 3px 22px;
-    font-size: 7px;
-    letter-spacing: 0.02em;
+    min-height: 20px;
+    max-width: 98px;
+    padding: 2px 13px 2px 18px;
+    font-size: 6px;
+    letter-spacing: 0.01em;
   }
 
   .panelCta::before {
-    left: 6px;
-    width: 9px;
-    height: 7px;
+    left: 5px;
+    width: 8px;
+    height: 6px;
   }
 
   .panelCta::after {
-    right: 5px;
-    font-size: 6px;
+    right: 4px;
+    font-size: 5px;
   }
 
   .daysCounter {
     top: 15px;
     width: min(80%, 152px);
-    padding: 9px 11px 9px;
+    padding: 7px 10px 7px;
+    gap: 2px;
   }
 
   .daysCounter::before {
-    width: 58px;
-    height: 16px;
-    top: -8px;
+    width: 52px;
+    height: 14px;
+    top: -7px;
   }
 
   .daysCounter__value {
-    gap: 3px;
-    font-size: 18px;
+    gap: 2px;
+    font-size: 16px;
   }
 
   .daysCounter__value::after {
-    padding-bottom: 3px;
-    font-size: 8px;
+    padding-bottom: 2px;
+    font-size: 7px;
   }
 
   .daysCounter__date {
-    font-size: 8px;
+    font-size: 7px;
   }
 }
 
