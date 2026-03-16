@@ -6,6 +6,8 @@ const bgAudio = document.getElementById("bgAudio");
 const previewModal = document.getElementById("previewModal");
 const previewOpenButton = document.querySelector("[data-open-preview]");
 const previewCloseButtons = document.querySelectorAll("[data-close-preview]");
+const daysCounter = document.querySelector("[data-days-counter]");
+const daysSinceValue = document.querySelector("[data-days-since]");
 
 let hideButtonTimeoutId = null;
 let hasStartedAudio = false;
@@ -13,6 +15,27 @@ let isOpen = false;
 let isAnimating = false;
 const OPEN_ANIMATION_MS = 2300;
 const CLOSE_ANIMATION_MS = 2300;
+
+const updateDaysSinceCounter = () => {
+  if (!daysCounter || !daysSinceValue) {
+    return;
+  }
+
+  const startDateValue = daysCounter.dataset.startDate;
+  if (!startDateValue) {
+    return;
+  }
+
+  const [year, month, day] = startDateValue.split("-").map(Number);
+  const startDate = new Date(year, month - 1, day);
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const daysElapsed = Math.max(0, Math.floor((today - startDate) / 86400000));
+  const formattedValue = new Intl.NumberFormat().format(daysElapsed);
+
+  daysSinceValue.textContent = formattedValue;
+  daysCounter.setAttribute("aria-label", `Loving you for ${formattedValue} days since 13 January 2026`);
+};
 
 const animateButton = () => {
   toggleButton.classList.add("hide");
@@ -124,3 +147,5 @@ window.addEventListener("keydown", (event) => {
     setPreviewModalState(false);
   }
 });
+
+updateDaysSinceCounter();

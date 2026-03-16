@@ -137,10 +137,121 @@ body::before {
   position: relative;
 }
 
+.daysCounter {
+  position: absolute;
+  top: clamp(24px, 6%, 36px);
+  left: 50%;
+  width: min(76%, 236px);
+  padding: clamp(13px, 3.1%, 17px) clamp(18px, 4.4%, 20px) clamp(12px, 3%, 16px);
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  transform: translateX(-50%) rotate(-1.8deg);
+  text-align: center;
+  z-index: 3;
+  border: 1px solid rgba(153, 129, 105, 0.22);
+  border-radius: 10px;
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 17px,
+      rgba(211, 104, 112, 0.46) 17px,
+      rgba(211, 104, 112, 0.46) 19px,
+      transparent 19px,
+      transparent 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(153, 185, 219, 0.36) 0,
+      rgba(153, 185, 219, 0.36) 1px,
+      transparent 1px,
+      transparent 100%
+    ),
+    radial-gradient(circle at 16% 10%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 30%),
+    linear-gradient(180deg, rgba(255, 252, 248, 0.98), rgba(245, 238, 228, 0.96));
+  background-size:
+    auto,
+    100% 22px,
+    auto,
+    auto;
+  background-repeat:
+    no-repeat,
+    repeat,
+    no-repeat,
+    no-repeat;
+  background-position:
+    0 0,
+    0 14px,
+    0 0,
+    0 0;
+  box-shadow:
+    0 12px 22px rgba(40, 25, 14, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.daysCounter::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 82px;
+  height: 22px;
+  transform: translateX(-50%) rotate(-4deg);
+  border: 1px solid rgba(142, 136, 124, 0.32);
+  border-radius: 4px;
+  background: rgba(211, 205, 192, 0.78);
+  box-shadow: 0 2px 6px rgba(36, 24, 12, 0.12);
+}
+
+.daysCounter__label {
+  order: 1;
+  max-width: 88%;
+  color: #6c4b38;
+  font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", cursive;
+  font-size: clamp(12px, 1.18vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.12;
+}
+
+.daysCounter__value {
+  order: 2;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 7px;
+  color: #59311d;
+  font-family: "Nunito", "Segoe UI", Tahoma, sans-serif;
+  font-size: clamp(28px, 5.3vw, 40px);
+  line-height: 0.94;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.daysCounter__value::after {
+  content: "days";
+  padding-bottom: 5px;
+  color: #725340;
+  font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", cursive;
+  font-size: clamp(12px, 1.15vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.daysCounter__date {
+  order: 3;
+  color: #70513e;
+  font-family: "Patrick Hand", "Segoe Print", "Bradley Hand", cursive;
+  font-size: clamp(11px, 1.08vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
 .panelCta {
   position: absolute;
   left: 50%;
-  bottom: clamp(22px, 6%, 34px);
+  bottom: clamp(56px, 13.5%, 68px);
   transform: translateX(-50%);
   min-height: clamp(28px, 7%, 36px);
   max-width: min(68%, 186px);
@@ -585,7 +696,7 @@ body::before {
   }
 
   .panelCta {
-    bottom: 24px;
+    bottom: 50px;
     min-height: 24px;
     max-width: 126px;
     padding: 4px 19px 4px 25px;
@@ -602,6 +713,39 @@ body::before {
   .panelCta::after {
     right: 6px;
     font-size: 7px;
+  }
+
+  .daysCounter {
+    top: 20px;
+    width: min(78%, 180px);
+    padding: 11px 14px 11px;
+  }
+
+  .daysCounter::before {
+    width: 70px;
+    height: 18px;
+    top: -9px;
+  }
+
+  .daysCounter__label {
+    font-size: 10px;
+    letter-spacing: 0.03em;
+  }
+
+  .daysCounter__value {
+    gap: 4px;
+    font-size: clamp(22px, 6vw, 28px);
+  }
+
+  .daysCounter__value::after {
+    padding-bottom: 4px;
+    font-size: 10px;
+    letter-spacing: 0.03em;
+  }
+
+  .daysCounter__date {
+    font-size: 9px;
+    letter-spacing: 0.02em;
   }
 
   .openBtn__text {
@@ -644,7 +788,7 @@ body::before {
   }
 
   .panelCta {
-    bottom: 18px;
+    bottom: 40px;
     min-height: 22px;
     max-width: 112px;
     padding: 3px 16px 3px 22px;
@@ -661,6 +805,32 @@ body::before {
   .panelCta::after {
     right: 5px;
     font-size: 6px;
+  }
+
+  .daysCounter {
+    top: 15px;
+    width: min(80%, 152px);
+    padding: 9px 11px 9px;
+  }
+
+  .daysCounter::before {
+    width: 58px;
+    height: 16px;
+    top: -8px;
+  }
+
+  .daysCounter__value {
+    gap: 3px;
+    font-size: 18px;
+  }
+
+  .daysCounter__value::after {
+    padding-bottom: 3px;
+    font-size: 8px;
+  }
+
+  .daysCounter__date {
+    font-size: 8px;
   }
 }
 
@@ -690,7 +860,7 @@ body::before {
   }
 
   .panelCta {
-    bottom: 14px;
+    bottom: 32px;
     min-height: 20px;
     max-width: 96px;
     padding: 2px 12px 2px 18px;
