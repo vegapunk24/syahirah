@@ -8,13 +8,51 @@ const previewOpenButton = document.querySelector("[data-open-preview]");
 const previewCloseButtons = document.querySelectorAll("[data-close-preview]");
 const daysCounter = document.querySelector("[data-days-counter]");
 const daysSinceValue = document.querySelector("[data-days-since]");
+const audioPlaylist = bgAudio?.dataset.songs
+  ?.split(",")
+  .map((song) => song.trim())
+  .filter(Boolean) ?? [];
 
 let hideButtonTimeoutId = null;
 let hasStartedAudio = false;
 let isOpen = false;
 let isAnimating = false;
+let currentSongIndex = -1;
 const OPEN_ANIMATION_MS = 2300;
 const CLOSE_ANIMATION_MS = 2300;
+
+const getRandomSongIndex = () => {
+  if (audioPlaylist.length === 0) {
+    return -1;
+  }
+
+  if (audioPlaylist.length === 1) {
+    return 0;
+  }
+
+  let nextIndex = currentSongIndex;
+  while (nextIndex === currentSongIndex) {
+    nextIndex = Math.floor(Math.random() * audioPlaylist.length);
+  }
+
+  return nextIndex;
+};
+
+const setAudioTrack = (trackIndex) => {
+  if (!bgAudio || trackIndex < 0 || !audioPlaylist[trackIndex]) {
+    return false;
+  }
+
+  currentSongIndex = trackIndex;
+  bgAudio.src = audioPlaylist[trackIndex];
+  bgAudio.load();
+  return true;
+};
+
+const queueRandomTrack = () => {
+  const nextTrackIndex = getRandomSongIndex();
+  return setAudioTrack(nextTrackIndex);
+};
 
 const updateDaysSinceCounter = () => {
   if (!daysCounter || !daysSinceValue) {
@@ -48,6 +86,10 @@ const animateButton = () => {
 
 const startAudio = async () => {
   if (!bgAudio || hasStartedAudio) {
+    return;
+  }
+
+  if (!bgAudio.getAttribute("src") && !queueRandomTrack()) {
     return;
   }
 
@@ -124,6 +166,21 @@ if (book && toggleButton) {
     window.setTimeout(() => {
       isAnimating = false;
     }, willOpen ? OPEN_ANIMATION_MS : CLOSE_ANIMATION_MS);
+  });
+}
+
+if (bgAudio && audioPlaylist.length > 0) {
+  queueRandomTrack();
+  bgAudio.addEventListener("ended", async () => {
+    if (!queueRandomTrack()) {
+      return;
+    }
+
+    try {
+      await bgAudio.play();
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
+    }
   });
 }
 
